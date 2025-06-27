@@ -1,0 +1,1 @@
+#define rootDir "/Users/maxdetering/Downloads/micromegas_6.2.3/CalcHEP_src" 

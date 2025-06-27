@@ -1,0 +1,48 @@
+Singlet-Doublet model
+
+Author: Maximilian Detering
+Copyright: 2025 by Maximilian Detering. All rights reserved.
+
+The model of particle interaction has to be defined in the    
+CalcHEP format,   Comput.Phys.Commun. 184 (2013) 1729-1769 //arXiv:arXiv:1207.6082[hep-ph] 
+
+1. The model is defined in the directory ./work/models via the following files:
+
+	extlib1.mdl  func1.mdl  lgrng1.mdl  prtcls1.mdl  vars1.mdl 
+
+   The model files were generated with FeynRules. The names of all particles in the dark sectors
+   that can potentially be a dark matter candidate  should  start with "~". 
+
+2. To check your model, go to work/  and launch 
+
+   	./calchep 
+
+   Use "Check Model"  to get  information  about   model inconsistencies. 
+  
+3. External constraints. 
+   If your model has external functions  they have to be realized 
+   as a  library in lib/aLib.a. If your external functions do not need other 
+   libraries and are written in C, then put this code in the lib/
+   subdirectory. The library will be compiled automatically.  In more complicated case,
+   improve  lib/Makefile
+ 
+4. The main program for the parameter scan is written in the main program file main.c
+
+5. Compilation of executable is launched by 
+
+    gmake  main=<name of your main file>
+
+    If gmake is absent, use make. We assume that in such case make works like gmake.
+
+6. The main program for the parameter scan can be called via
+
+	./main <outputfile.txt>
+
+   The output will be written to the text file in CSV format.
+
+7. The parameter space can be changed in the main.c file in the for-loops. Before recompilation, 
+   make sure to clean the build files with
+
+	make clean
+
+   called from within this directory.

@@ -1,0 +1,51 @@
+Singlet-Doublet
+ Parameters
+  Name         | Value       |> Comment                                                                <|
+aEWM1          |127.9        |Inverse of the EW coupling constant at the Z pole
+Gf             |0.0000116637 |Fermi constant
+aS             |0.1184       |Strong coupling constant at the Z pole
+ymdo           |0.00504      |Down Yukawa mass
+ymup           |0.00255      |Up Yukawa mass
+yms            |0.101        |Strange Yukawa mass
+ymc            |1.27         |Charm Yukawa mass
+ymb            |4.7          |Bottom Yukawa mass
+ymt            |172          |Top Yukawa mass
+yme            |0.000511     |Electron Yukawa mass
+ymm            |0.10566      |Muon Yukawa mass
+ymtau          |1.777        |Tau Yukawa mass
+cabi           |0.227736     |Cabibbo angle
+mS             |1500         |Singlet mass parameter
+mD             |1000         |Doublet mass parameter
+YChi           |1            |Singlet-Doublet(L) Yukawa coupling
+ThetaY         |0.78         |Singlet-Doublet(L) Yukawa coupling angle
+MN1            |1000         |MN1
+MN2            |-1012.0666718|MN2
+MN3            |1512.06667189|MN3
+U11            |0            |U11
+U21            |-0.7071067811|U21
+U31            |0.70710678118|U31
+U12            |-0.0691413102|U12
+U22            |0.70541458704|U22
+U32            |0.70541458704|U32
+U13            |0.99760687608|U13
+U23            |0.04889028931|U23
+U33            |0.04889028931|U33
+GG             |1.21977796370|Strong coupling constant at the Z pole   This value will be ignored and ca
+MZ             |91.1876      |Mass of G0.
+Me             |0.000511     |Mass of e.
+MMU            |0.10566      |Mass of mu.
+MTA            |1.777        |Mass of ta.
+MU             |0.00255      |Mass of u.
+MC             |1.27         |Mass of c.
+MT             |172          |Mass of t.
+MD             |0.00504      |Mass of d.
+MS             |0.101        |Mass of s.
+MB             |4.7          |Mass of b.
+MH             |125          |Mass of H.
+%WZ            |2.4952       |Width of G0.
+%WW            |2.085        |Width of GP.
+%WT            |1.50833649   |Width of t.
+%WH            |0.00407      |Width of H.
+E              |2.71828182845|The base of the natural logarithm.
+Pi             |3.14159265358|The circumference of a circle divided by the diameter.
+=========================================================================================================
