@@ -21,16 +21,47 @@
 #include"../include/micromegas_aux.h"
 #include"lib/pmodel.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
+void readScanParams(const char* filename,
+    double* YChi_min, double* YChi_max, double* YChi_step,
+    double* ThetaY_min, double* ThetaY_max, double* ThetaY_step,
+    double* mD_min, double* mD_max, double* mD_step,
+    double* mS_min, double* mS_max, double* mS_step)
+{
+    FILE* f = fopen(filename, "r");
+    if (!f) { printf("Could not open parameter file '%s'\n", filename); exit(1); }
+    char line[256];
+    while (fgets(line, sizeof(line), f)) {
+        char key[32];
+        double val;
+        if (sscanf(line, "%31[^=]=%lf", key, &val) == 2) {
+            if (strcmp(key, "YChi_min") == 0) *YChi_min = val;
+            else if (strcmp(key, "YChi_max") == 0) *YChi_max = val;
+            else if (strcmp(key, "YChi_step") == 0) *YChi_step = val;
+            else if (strcmp(key, "ThetaY_min") == 0) *ThetaY_min = val;
+            else if (strcmp(key, "ThetaY_max") == 0) *ThetaY_max = val;
+            else if (strcmp(key, "ThetaY_step") == 0) *ThetaY_step = val;
+            else if (strcmp(key, "mD_min") == 0) *mD_min = val;
+            else if (strcmp(key, "mD_max") == 0) *mD_max = val;
+            else if (strcmp(key, "mD_step") == 0) *mD_step = val;
+            else if (strcmp(key, "mS_min") == 0) *mS_min = val;
+            else if (strcmp(key, "mS_max") == 0) *mS_max = val;
+            else if (strcmp(key, "mS_step") == 0) *mS_step = val;
+        }
+    }
+    fclose(f);
+}
 
 
 int main(int argc,char** argv)
 {  
   // Help message
-  if(argc!=2)
+  if(argc!=3)
   { 
-      printf(" Correct usage:  ./main  <output file name>\n");
-      printf("Example: ./main output.txt\n");
+      printf(" Correct usage:  ./main <input file name>  <output file name>\n");
+      printf("Example: ./main input.txt output.txt\n");
       exit(1);
   }
 
@@ -52,6 +83,20 @@ int main(int argc,char** argv)
   
   // Define error variable
   int err;
+
+  // Parameter scan variables
+  double YChi_min, YChi_max, YChi_step;
+  double ThetaY_min, ThetaY_max, ThetaY_step;
+  double mD_min, mD_max, mD_step;
+  double mS_min, mS_max, mS_step;
+
+  // Read scan parameters from file
+  readScanParams(argv[1],
+    &YChi_min, &YChi_max, &YChi_step,
+    &ThetaY_min, &ThetaY_max, &ThetaY_step,
+    &mD_min, &mD_max, &mD_step,
+    &mS_min, &mS_max, &mS_step);
+
   // Read constrained parameters
   err = calcMainFunc();
   if(err==-1)
@@ -65,9 +110,9 @@ int main(int argc,char** argv)
   // Parameter scan
 
   // Open file for output
-  FILE *fp = fopen(argv[1], "w"); // Open file for writing
+  FILE *fp = fopen(argv[2], "w"); // Open file for writing
   if(!fp) {
-    printf("Failed to open output file '%s'.\n",argv[1]);
+    printf("Failed to open output file '%s'.\n",argv[2]);
     exit(1);
   }
   // Print header for table
@@ -90,10 +135,10 @@ int main(int argc,char** argv)
 
   printf("Starting parameter scan...\n");
 
-  for (double YChi = 1.0; YChi <= 2.0; YChi += 1.0) {
-    for (double ThetaY = 0.; ThetaY <= 2*M_PI; ThetaY += M_PI / 4.0) {
-      for (double mD = 1000.0; mD <= 2000.0; mD += 100.0) {
-        for (double mS = mD; mS <= 2000.0; mS += 100.0) {
+for (double YChi = YChi_min; YChi <= YChi_max; YChi += YChi_step) {
+    for (double ThetaY = ThetaY_min; ThetaY <= ThetaY_max; ThetaY += ThetaY_step) {
+      for (double mD = mD_min; mD <= mD_max; mD += mD_step) {
+        for (double mS = mS_min; mS <= mS_max; mS += mS_step) {
           // Assign values to model parameters
           assignValW("mS", mS);
           assignValW("mD", mD);
@@ -228,7 +273,7 @@ int main(int argc,char** argv)
 
   // Close output file
   fclose(fp);
-  printf("Results written to '%s'.\n", argv[1]);
+  printf("Results written to '%s'.\n", argv[2]);
   printf("Finished successfully.\n");
 
   return 0;

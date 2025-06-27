@@ -36,9 +36,17 @@ CalcHEP format,   Comput.Phys.Commun. 184 (2013) 1729-1769 //arXiv:arXiv:1207.60
 
 6. The main program for the parameter scan can be called via
 
-	./main <outputfile.txt>
+	./main <inputfile.txt> <outputfile.txt>
 
-   The output will be written to the text file in CSV format.
+   The output will be written to the text file in CSV format. The input file contains the
+   details of the parameter space to scan. It contains the minimum, maximum and step values for
+   the parameters YChi, mS, mD, ThetaY. The lines must be in the form
+
+	YChi_max=<value>
+	YChi_min=<value>
+	YChi_step=<value>
+
+   etc.
 
 7. The parameter space can be changed in the main.c file in the for-loops. Before recompilation, 
    make sure to clean the build files with

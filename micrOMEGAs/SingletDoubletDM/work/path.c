@@ -1,1 +1,1 @@
-char * WORK="/Users/maxdetering/Downloads/micromegas_6.2.3/SingletDoubletDM/work";
+char * WORK="/Users/maxdetering/Documents/Physics/Research/Projects/DM-Criticality/metbound-dm/micrOMEGAs/SingletDoubletDM/work";

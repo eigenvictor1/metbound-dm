@@ -1,5 +1,5 @@
 .DS_Store
-*/.DS_Store
+**/.DS_Store
 micrOMEGAs/MSSM
 micrOMEGAs/NMSSM
 micrOMEGAs/IDM
@@ -17,3 +17,4 @@ micrOMEGAs/LHM
 micrOMEGAs/LLL_scalar
 micrOMEGAs/mdlIndep
 micrOMEGAs/.date
+**/work/so_generated
